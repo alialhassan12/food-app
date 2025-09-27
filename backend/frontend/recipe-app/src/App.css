@@ -1,16 +1,15 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  box-sizing: border-box;
+  margin: 0 ;
+  padding: 0;
 }
 
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-}
+} */
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -39,4 +38,32 @@
 
 .read-the-docs {
   color: #888;
+}
+/* Home */
+.container{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+/* navbar */
+.logo{
+  width: 150px;
+  height: 150px;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+.navbar ul{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap:20px;
+  list-style: none;
+}
+.navbar ul li a{
+  font-size: 20px;
 }

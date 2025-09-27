@@ -4,8 +4,8 @@ const recipes=require('../models/recipeSchema.js');
 
 router.get('/', async(req,res)=>{
     try{
-        const allRcipes=await recipes.find();
-        res.status(200).json({message:"all recipes",allRcipes});
+        const allRecipes=await recipes.find();
+        res.status(200).json({message:"all recipes",allRecipes});
     }catch(err){
         console.log(err);
         res.status(500).json({error:"Server error"});
@@ -13,7 +13,7 @@ router.get('/', async(req,res)=>{
 });
 
 router.post('/add', async (req,res)=>{
-    const {title,ingredients,instructions}=req.body;
+    const {title,ingredients,instructions,image}=req.body;
     try{
         if(!title || !ingredients || !instructions){
             return res.status(422).json({error:"Please fill all the fields"});
@@ -21,7 +21,8 @@ router.post('/add', async (req,res)=>{
         const newRecipe= await recipes.create({
             title,
             ingredients,
-            instructions
+            instructions,
+            image
         });
         res.status(201).json({message:"Recipe added successfully"});
     }catch(err){
