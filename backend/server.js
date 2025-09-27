@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/recipe', require('./routes/recipeRoute.js'));
+app.use('/user',require('./routes/userRoute.js'));
 
 const startServer= async()=>{
     try{
