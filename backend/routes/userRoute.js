@@ -29,7 +29,7 @@ router.post('/register',async(req,res)=>{
         let token=jwt.sign({email,id:newUser._id},process.env.SECRET_KEY,{expiresIn:"1w"});
 
         //after completing register and web token 
-        return res.status(200).json({message:"user Registered Successfully",token,newUser});
+        return res.status(200).json({message:"user Registered Successfully",token,newUser});    
 
     }catch(err){
         console.log(err);
@@ -56,4 +56,18 @@ router.post('/signin',async (req,res)=>{
         return res.status(500).json({error:"Server Error"});
     }
 });
+
+router.get('/:id',async(req,res)=>{
+    try{
+        const user= await User.findById(req.params.id);
+        if(!user){
+            return res.status(400).json({error:"User Not Found"});
+        }
+        return res.status(200).json({user});
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({error:"Server Error"});
+    }
+});
+
 module.exports=router

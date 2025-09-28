@@ -67,3 +67,23 @@
 .navbar ul li a{
   font-size: 20px;
 }
+/* authentication */
+.authContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.authContainer form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  padding:20px ;
+  border-radius: 6px;
+  color: #888;
+  width: 400px;
+}
+.authContainer form h2{
+  color: black;
+  text-align: center;
+}

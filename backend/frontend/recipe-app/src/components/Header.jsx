@@ -1,5 +1,16 @@
 import logo from '../assets/logo.png';
+import { useEffect,useState } from 'react';
+
 export default function Header(){
+    const [profileEndPoint,setProfileEndPoint]=useState("");
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            setProfileEndPoint("/profile");
+        }else{
+            setProfileEndPoint("/user/signin");
+        }
+    },[]);
+    
     return (
         <>
         <div className="navbar">
@@ -9,7 +20,7 @@ export default function Header(){
                 <li><a href="">recipes</a></li>
                 <li><a href="">add recipe</a></li>
                 <li><a href="">cheffs</a></li>
-                <li><a href="">profile</a></li>
+                <li><a href={profileEndPoint}>profile</a></li>
             </ul>
         </div>
         </>
