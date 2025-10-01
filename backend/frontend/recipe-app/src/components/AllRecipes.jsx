@@ -54,7 +54,7 @@ export default function AllRecipes(){
                         <CardMedia
                             component="img"
                             height="194"
-                            image={recipe.image}
+                            image={`http://localhost:5000/${recipe.image}`}
                             
                         />
                         <CardContent>

@@ -1,6 +1,20 @@
 const express = require('express');
+const multer=require('multer');
+const path = require('path');
 const router=express.Router();
 const recipes=require('../models/recipeSchema.js');
+
+//add upload the middleware to save the images in /uploads/
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload=multer({storage:storage});
 
 router.get('/', async(req,res)=>{
     try{
@@ -12,8 +26,11 @@ router.get('/', async(req,res)=>{
     }
 });
 
-router.post('/add', async (req,res)=>{
-    const {title,ingredients,instructions,image}=req.body;
+router.post('/add', upload.single('image'),async (req,res)=>{
+    //get the image file from req.file
+    const imagePath=req.file?req.file.path :null;
+    
+    const {title,ingredients,instructions}=req.body;
     try{
         if(!title || !ingredients || !instructions){
             return res.status(422).json({error:"Please fill all the fields"});
@@ -22,7 +39,7 @@ router.post('/add', async (req,res)=>{
             title,
             ingredients,
             instructions,
-            image
+            image:imagePath
         });
         res.status(201).json({message:"Recipe added successfully"});
     }catch(err){

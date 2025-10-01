@@ -3,11 +3,14 @@ import { useEffect,useState } from 'react';
 
 export default function Header(){
     const [profileEndPoint,setProfileEndPoint]=useState("");
+    const [addrecipeEndPoint,setAddRecipeEndPoint]=useState("");
     useEffect(()=>{
         if(localStorage.getItem('token')){
             setProfileEndPoint("/profile");
+            setAddRecipeEndPoint("/recipe/add");
         }else{
             setProfileEndPoint("/user/signin");
+            setAddRecipeEndPoint("/user/signin");
         }
     },[]);
     
@@ -18,7 +21,7 @@ export default function Header(){
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="">recipes</a></li>
-                <li><a href="">add recipe</a></li>
+                <li><a href={addrecipeEndPoint}>add recipe</a></li>
                 <li><a href="">cheffs</a></li>
                 <li><a href={profileEndPoint}>profile</a></li>
             </ul>
