@@ -88,3 +88,23 @@
   text-align: center;
 }
 
+/* Profile */
+.profileContainer{
+  padding: 20px;
+}
+.imgConatiner{
+  background-image: url('https://i.pinimg.com/1200x/eb/2b/4f/eb2b4fd11ac3847dd4098f3b954ddfd1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid #000;
+
+}
+.top{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}

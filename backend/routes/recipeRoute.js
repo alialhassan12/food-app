@@ -30,7 +30,7 @@ router.post('/add', upload.single('image'),async (req,res)=>{
     //get the image file from req.file
     const imagePath=req.file?req.file.path :null;
     
-    const {title,ingredients,instructions}=req.body;
+    const {title,ingredients,instructions,owner}=req.body;
     try{
         if(!title || !ingredients || !instructions){
             return res.status(422).json({error:"Please fill all the fields"});
@@ -39,7 +39,8 @@ router.post('/add', upload.single('image'),async (req,res)=>{
             title,
             ingredients,
             instructions,
-            image:imagePath
+            image:imagePath,
+            owner
         });
         res.status(201).json({message:"Recipe added successfully"});
     }catch(err){
@@ -93,5 +94,19 @@ router.delete('/:id',async(req,res)=>{
         console.log(err);
         res.status(500).json({error:"Server error"});
     }
-})
+});
+
+router.get('/ownedRecipes/:id',async(req,res)=>{
+    try{
+        const {id}=req.params;
+        const ownedRecipes=await recipes.find({owner:id});
+        if(!ownedRecipes){
+            return res.status(400).json({message:"No Recipes Found"});
+        }
+        res.status(200).json({ownedRecipes});
+    }catch(err){
+        console.log(err);
+        res.status(500).json({error:"Server Error"});
+    }
+});
 module.exports=router;

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import SignIn from './pages/Signin';
 import Register from './pages/Register';
 import AddRecipe from './pages/AddRecipe';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/user/signin' element={<SignIn/>}></Route>
         <Route path='/user/register' element={<Register/>}></Route>
         <Route path='/recipe/add' element={<AddRecipe/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
       </Routes>
       
     </>

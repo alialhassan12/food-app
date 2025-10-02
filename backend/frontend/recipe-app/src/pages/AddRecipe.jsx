@@ -10,6 +10,7 @@ export default function AddRecipe(){
         title:"",
         ingredients:"",
         instructions:"",
+        owned:null
     });
     const [image,setImage]=useState(null);
     const [previewImg,setPreviewImg]=useState(null);
@@ -37,10 +38,13 @@ export default function AddRecipe(){
 
     async function handleSubmit(e){
         e.preventDefault();
+        const owner=await JSON.parse(localStorage.getItem('user'));
+        const ownerId=owner?._id;
         const formData=new FormData();
         formData.append('title',form.title);
         formData.append('ingredients',form.ingredients);
         formData.append('instructions',form.instructions);
+        formData.append('owner',ownerId);
         if(image){
             formData.append('image',image);
         }

@@ -19,6 +19,11 @@ const recipeShema=new mongoose.Schema({
     createdAt:{
         type:Date,
         default:Date.now
+    },
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'users',
+        required:true   
     }
 });
 
