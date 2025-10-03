@@ -22,8 +22,8 @@ export default function Header(){
                 <li><a href="/">Home</a></li>
                 <li><a href="">recipes</a></li>
                 <li><a href={addRecipeEndPoint}>add recipe</a></li>
-                <li><a href="">cheffs</a></li>
                 <li><a href={profileEndPoint}>profile</a></li>
+                <li><a href="" onClick={()=>{localStorage.removeItem('token')}}>LogOut</a></li>
             </ul>
         </div>
         </>

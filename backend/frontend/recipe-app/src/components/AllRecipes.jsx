@@ -17,8 +17,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 export default function AllRecipes(){
     const [recipes,setRecipes]=useState([]);
-    
+    const [user,setUser]=useState([]);
     useEffect(()=>{
+        setUser(JSON.parse(localStorage.getItem('user')));
+        
         axios.get("http://localhost:5000/recipe")
         .then(response=>{
             setRecipes(response.data.allRecipes);
@@ -37,7 +39,7 @@ export default function AllRecipes(){
                         <CardHeader
                             avatar={
                             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                R
+                                {user.email[0].toUpperCase()}
                             </Avatar>
                             }
                             action={

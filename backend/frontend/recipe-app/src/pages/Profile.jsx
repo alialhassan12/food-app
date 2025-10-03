@@ -46,7 +46,7 @@ export default function Profile(){
                     <p>{user?.phoneNumber}</p>
                 </div>
             </div>
-            <div className="bottom" style={{marginTop:"50px"}}>
+            <div className="mid" style={{marginTop:"50px"}}>
                 <h2>My Recipes</h2>
                 <div className="recipes" style={{display:"flex",gap:"10px",flexWrap:"wrap",padding:"10px"}}>
                     {ownedRecipes.map((recipe)=>{
@@ -55,7 +55,7 @@ export default function Profile(){
                                 <CardHeader
                                     avatar={
                                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                        R
+                                        {user.email[0].toUpperCase()}
                                     </Avatar>
                                     }
                                     action={
@@ -92,6 +92,19 @@ export default function Profile(){
                         );
                     })}
                 </div>
+            </div>
+            <div className="bottom">
+                <h2>Account Settings</h2>
+                <label htmlFor="profilePic" 
+                    style={{
+                        display:"inline-block",    
+                        cursor:"pointer",
+                        background:"#1976d2",
+                        padding:"10px",
+                        borderRadius:"10px"}}
+                    >Change Profile Picture</label>
+                    
+                <input id="profilePic" type="file" style={{display:"none"}} />
             </div>
         </div>
         </>
